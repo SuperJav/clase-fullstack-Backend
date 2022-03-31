@@ -3,13 +3,14 @@ const { request } = require("express")
 const express =require("express")//importamos express
 const { get } = require("express/lib/response")
 const morgan = require("morgan")
+const cors = require("cors")
 
 const app=express()//ejecutamos el http de express
 
 //Permite crear un middleware para ver las solicitudes en la terminar
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :solicitudName'))
-
 app.use(express.json())//para haceder a los datos convertidos en json
+app.use(cors())//Permite da actorizacion para pasar informacion mediante api
 
 //Peticion que devuelve un H1 de bienvenida
 app.get("/",(request,response)=>{
